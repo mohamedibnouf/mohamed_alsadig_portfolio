@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
+import { PageContainer } from "@/components/ui/page-container";
 import { Badge } from "@/components/ui/badge";
 import { blogPosts } from "@/data/site";
 import { useLocale } from "@/providers/locale-provider";
@@ -15,23 +16,24 @@ export function BlogPreviewSection() {
 
   return (
     <section className="section-padding relative bg-bg-secondary/30">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex items-end justify-between">
+      <PageContainer>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeader
             label="06"
             title={t.blog.title}
             subtitle={t.blog.subtitle}
+            className="mb-0 sm:mb-0"
           />
           <Link
             href="/blog"
-            className="mb-16 hidden items-center gap-2 text-sm text-accent transition-colors hover:text-white md:flex"
+            className="mb-0 inline-flex items-center gap-2 text-sm text-accent transition-colors hover:text-white sm:mb-16"
           >
             View all
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:mt-0 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {blogPosts.slice(0, 3).map((post, i) => (
             <motion.div
               key={post.slug}
@@ -41,7 +43,7 @@ export function BlogPreviewSection() {
               transition={{ delay: i * 0.1, duration: 0.6 }}
             >
               <Link href={`/blog/${post.slug}`} className="group block">
-                <article className="glass-card h-full p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/20">
+                <article className="glass-card h-full p-4 transition-all duration-500 hover:-translate-y-1 hover:border-accent/20 sm:p-6">
                   <Badge variant="accent" className="mb-4">
                     {locale === "ar" ? post.categoryAr : post.category}
                   </Badge>
@@ -63,7 +65,7 @@ export function BlogPreviewSection() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </PageContainer>
     </section>
   );
 }

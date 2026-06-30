@@ -38,13 +38,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) notFound();
 
   return (
-    <article className="relative min-h-screen pt-24">
+    <article className="relative min-h-screen pt-20 sm:pt-24">
       {/* Hero */}
       <div
-        className={`relative overflow-hidden bg-gradient-to-br ${project.gradient} py-32`}
+        className={`relative overflow-hidden bg-gradient-to-br ${project.gradient} py-16 sm:py-24 md:py-32`}
       >
         <div className="absolute inset-0 grid-overlay opacity-30" />
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="page-container relative z-10">
           <Link
             href="/#projects"
             className="mb-8 inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-white"
@@ -57,12 +57,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {project.category}
           </Badge>
 
-          <h1 className="font-display text-5xl font-bold tracking-tight text-white md:text-7xl">
+          <h1 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-7xl">
             {project.title}
           </h1>
-          <p className="mt-6 max-w-2xl text-xl text-text-muted">{project.tagline}</p>
+          <p className="mt-4 max-w-2xl text-base text-text-muted sm:mt-6 sm:text-lg md:text-xl">{project.tagline}</p>
 
-          <div className="mt-8 flex flex-wrap gap-6 text-sm">
+          <div className="mt-6 flex flex-wrap gap-4 text-sm sm:mt-8 sm:gap-6">
             <div>
               <span className="text-text-muted">Role</span>
               <p className="font-medium text-white">{project.role}</p>
@@ -79,35 +79,35 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div className="page-container py-10 sm:py-12 md:py-16">
         {/* Overview */}
-        <section className="mb-20">
-          <h2 className="font-display text-3xl font-bold text-white">Overview</h2>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-text-muted">
+        <section className="mb-12 sm:mb-16 md:mb-20">
+          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Overview</h2>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-text-muted sm:mt-6 sm:text-lg">
             {project.description}
           </p>
         </section>
 
         {/* Challenge & Solution */}
-        <div className="mb-20 grid gap-8 md:grid-cols-2">
+        <div className="mb-12 grid gap-4 sm:mb-16 sm:gap-6 md:mb-20 md:grid-cols-2 md:gap-8">
           <GlassCard>
-            <h3 className="font-display text-xl font-semibold text-white">Challenge</h3>
+            <h3 className="font-display text-lg font-semibold text-white sm:text-xl">Challenge</h3>
             <p className="mt-4 leading-relaxed text-text-muted">{project.challenge}</p>
           </GlassCard>
           <GlassCard>
-            <h3 className="font-display text-xl font-semibold text-white">Solution</h3>
+            <h3 className="font-display text-lg font-semibold text-white sm:text-xl">Solution</h3>
             <p className="mt-4 leading-relaxed text-text-muted">{project.solution}</p>
           </GlassCard>
         </div>
 
         {/* Architecture */}
-        <section className="mb-20">
-          <h2 className="font-display text-3xl font-bold text-white">Architecture</h2>
-          <GlassCard className="mt-8">
-            <div className="flex items-center gap-3 overflow-x-auto py-4 font-mono text-sm">
+        <section className="mb-12 sm:mb-16 md:mb-20">
+          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Architecture</h2>
+          <GlassCard className="mt-4 sm:mt-8">
+            <div className="scrollbar-hide flex flex-col gap-3 py-2 font-mono text-xs sm:flex-row sm:items-center sm:gap-3 sm:overflow-x-auto sm:py-4 sm:text-sm">
               {project.architecture.split(" → ").map((part, i, arr) => (
-                <span key={i} className="flex items-center gap-3 whitespace-nowrap">
-                  <span className="rounded-lg border border-accent/20 bg-accent/5 px-4 py-2 text-accent">
+                <span key={i} className="flex items-center gap-2 sm:gap-3 sm:whitespace-nowrap">
+                  <span className="rounded-lg border border-accent/20 bg-accent/5 px-3 py-2 text-accent sm:px-4">
                     {part.trim()}
                   </span>
                   {i < arr.length - 1 && (
@@ -120,9 +120,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </section>
 
         {/* Tech Stack & Features */}
-        <div className="mb-20 grid gap-8 md:grid-cols-2">
+        <div className="mb-12 grid gap-8 sm:mb-16 md:mb-20 md:grid-cols-2">
           <section>
-            <h2 className="font-display text-3xl font-bold text-white">Tech Stack</h2>
+            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Tech Stack</h2>
             <div className="mt-6 flex flex-wrap gap-2">
               {project.technologies.map((tech) => (
                 <span
@@ -135,7 +135,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </section>
           <section>
-            <h2 className="font-display text-3xl font-bold text-white">Features</h2>
+            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Features</h2>
             <ul className="mt-6 space-y-3">
               {project.features.map((feature) => (
                 <li
@@ -154,9 +154,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         {/* Gallery Placeholder */}
-        <section className="mb-20">
-          <h2 className="font-display text-3xl font-bold text-white">Gallery</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <section className="mb-12 sm:mb-16 md:mb-20">
+          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Gallery</h2>
+          <div className="mt-4 grid gap-3 sm:mt-8 sm:gap-4 md:grid-cols-3">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
@@ -169,10 +169,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </section>
 
         {/* Video Placeholder */}
-        <section className="mb-20">
-          <h2 className="font-display text-3xl font-bold text-white">Demo</h2>
+        <section className="mb-12 sm:mb-16 md:mb-20">
+          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Demo</h2>
           <div
-            className={`mt-8 flex aspect-video items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} border border-white/5`}
+            className={`mt-4 flex aspect-video items-center justify-center rounded-xl bg-gradient-to-br sm:mt-8 sm:rounded-2xl ${project.gradient} border border-white/5`}
           >
             <div className="text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-white/5">
@@ -184,7 +184,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </section>
 
         {/* Business Impact & Lessons */}
-        <div className="mb-20 grid gap-8 md:grid-cols-2">
+        <div className="mb-12 grid gap-4 sm:mb-16 sm:gap-6 md:mb-20 md:grid-cols-2 md:gap-8">
           <GlassCard glow>
             <h3 className="font-display text-xl font-semibold text-white">
               Business Impact
@@ -210,8 +210,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Result */}
         <section className="text-center">
-          <GlassCard className="inline-block p-12">
-            <p className="font-display text-2xl font-bold text-gradient-accent">
+          <GlassCard className="w-full p-6 sm:inline-block sm:p-12">
+            <p className="font-display text-xl font-bold text-gradient-accent sm:text-2xl">
               Result
             </p>
             <p className="mt-4 max-w-lg text-text-muted">{project.businessImpact}</p>

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
+import { PageContainer } from "@/components/ui/page-container";
 import { skillCategories } from "@/data/site";
 import { useLocale } from "@/providers/locale-provider";
 import { getTranslations } from "@/data/translations";
@@ -37,21 +38,21 @@ export function SkillsSection() {
 
   return (
     <section id="skills" className="section-padding relative">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <PageContainer>
         <SectionHeader
           label="04"
           title={t.skills.title}
           subtitle={t.skills.subtitle}
         />
 
-        <div ref={ref} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div ref={ref} className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, ci) => (
             <motion.div
               key={category.name}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: ci * 0.1, duration: 0.6 }}
-              className="glass-card p-6 transition-all duration-500 hover:border-accent/20"
+              className="glass-card p-4 transition-all duration-500 hover:border-accent/20 sm:p-6"
             >
               <h3 className="mb-6 font-display text-lg font-semibold text-white">
                 {locale === "ar" ? category.nameAr : category.name}
@@ -69,7 +70,7 @@ export function SkillsSection() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </PageContainer>
     </section>
   );
 }

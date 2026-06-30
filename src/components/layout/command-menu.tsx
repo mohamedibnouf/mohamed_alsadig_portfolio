@@ -135,7 +135,7 @@ export function CommandMenu() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[200] flex items-start justify-center bg-black/60 pt-[20vh] backdrop-blur-sm"
+            className="fixed inset-0 z-[200] flex items-start justify-center bg-black/60 px-4 pt-[12vh] pb-4 backdrop-blur-sm sm:pt-[20vh]"
           onClick={() => setOpen(false)}
         >
           <motion.div
@@ -143,7 +143,7 @@ export function CommandMenu() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="glass-card mx-4 w-full max-w-lg overflow-hidden"
+            className="glass-card mx-auto w-full max-w-lg overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 border-b border-white/5 px-4 py-3">

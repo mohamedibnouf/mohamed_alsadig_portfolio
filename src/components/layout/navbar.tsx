@@ -21,6 +21,21 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isMobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileOpen]);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMobileOpen(false);
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, []);
+
   const getLabel = (link: (typeof navLinks)[0]) =>
     locale === "ar" ? link.labelAr : link.label;
 
@@ -37,7 +52,7 @@ export function Navbar() {
             : "bg-transparent py-5"
         )}
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
+        <nav className="page-container flex items-center justify-between py-0">
           <Link href="/" className="group flex items-center gap-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-secondary text-sm font-bold text-white">
               MA
@@ -91,25 +106,35 @@ export function Navbar() {
 
       <AnimatePresence>
         {isMobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-4 top-20 z-50 glass-card rounded-2xl p-6 lg:hidden"
-          >
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  className="rounded-xl px-4 py-3 text-text-muted transition-colors hover:bg-white/5 hover:text-white"
-                >
-                  {getLabel(link)}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+              onClick={() => setIsMobileOpen(false)}
+              aria-hidden="true"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="fixed inset-x-4 top-[4.5rem] z-50 max-h-[calc(100dvh-6rem)] overflow-y-auto glass-card rounded-2xl p-4 sm:inset-x-6 sm:p-6 lg:hidden"
+            >
+              <div className="flex flex-col gap-1">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    className="touch-target rounded-xl px-4 py-3 text-base text-text-muted transition-colors hover:bg-white/5 hover:text-white"
+                  >
+                    {getLabel(link)}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

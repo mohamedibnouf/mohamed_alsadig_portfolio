@@ -9,6 +9,7 @@ const Hero3DGradient = dynamic(
 );
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Mail } from "lucide-react";
+import { PageContainer } from "@/components/ui/page-container";
 import { Button } from "@/components/ui/button";
 import { stats } from "@/data/site";
 import { useLocale } from "@/providers/locale-provider";
@@ -38,10 +39,10 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center pt-24 pb-16"
+      className="relative flex min-h-[100dvh] items-center pt-20 pb-12 sm:pt-24 sm:pb-16"
     >
       <Hero3DGradient />
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8">
+      <PageContainer className="relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -57,7 +58,7 @@ export function HeroSection() {
 
           <motion.h1
             variants={itemVariants}
-            className="font-display text-5xl leading-[1.1] font-bold tracking-tight text-white md:text-7xl lg:text-8xl"
+            className="font-display text-[1.75rem] leading-[1.15] font-bold tracking-tight text-white min-[400px]:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
           >
             {t.hero.headline.split("\n").map((line, i) => (
               <span key={i} className="block">
@@ -72,29 +73,29 @@ export function HeroSection() {
 
           <motion.p
             variants={itemVariants}
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-text-muted md:text-xl"
+            className="mt-5 max-w-2xl text-base leading-relaxed text-text-muted sm:mt-8 sm:text-lg md:text-xl"
           >
             {t.hero.subheadline}
           </motion.p>
 
           <motion.div
             variants={itemVariants}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            className="mt-8 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
           >
-            <Link href="#projects">
-              <Button magnetic>
+            <Link href="#projects" className="w-full sm:w-auto">
+              <Button magnetic className="w-full sm:w-auto">
                 {t.hero.ctaProjects}
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
-            <a href="/cv.pdf" download>
-              <Button variant="secondary" magnetic>
+            <a href="/cv.pdf" download className="w-full sm:w-auto">
+              <Button variant="secondary" magnetic className="w-full sm:w-auto">
                 <Download className="h-4 w-4" />
                 {t.hero.ctaCV}
               </Button>
             </a>
-            <Link href="/contact">
-              <Button variant="ghost" magnetic>
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button variant="ghost" magnetic className="w-full sm:w-auto">
                 <Mail className="h-4 w-4" />
                 {t.hero.ctaContact}
               </Button>
@@ -106,28 +107,28 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 4.5, duration: 0.8 }}
-          className="mt-24 grid grid-cols-2 gap-6 md:grid-cols-4"
+          className="mt-12 grid grid-cols-2 gap-3 sm:mt-16 sm:gap-4 md:mt-24 md:grid-cols-4 md:gap-6"
         >
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className="glass-card group p-6 text-center transition-all duration-500 hover:border-accent/20"
+              className="glass-card group p-4 text-center transition-all duration-500 hover:border-accent/20 sm:p-6"
             >
               <motion.p
-                className="font-display text-3xl font-bold text-white md:text-4xl"
+                className="font-display text-2xl font-bold text-white sm:text-3xl md:text-4xl"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 4.8 + i * 0.1, duration: 0.5 }}
               >
                 {stat.value}
               </motion.p>
-              <p className="mt-2 text-sm text-text-muted">
+              <p className="mt-1.5 text-xs text-text-muted sm:mt-2 sm:text-sm">
                 {locale === "ar" ? stat.labelAr : stat.label}
               </p>
             </div>
           ))}
         </motion.div>
-      </div>
+      </PageContainer>
     </section>
   );
 }

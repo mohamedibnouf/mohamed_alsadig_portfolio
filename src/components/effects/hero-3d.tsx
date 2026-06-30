@@ -60,7 +60,7 @@ function GradientMesh() {
 
 export function Hero3DGradient() {
   return (
-    <div className="pointer-events-none absolute top-0 right-0 h-[600px] w-[600px] opacity-40">
+    <div className="pointer-events-none absolute top-0 right-0 hidden h-[400px] w-[400px] opacity-40 md:block lg:h-[600px] lg:w-[600px]">
       <Canvas camera={{ position: [0, 0, 3], fov: 45 }} dpr={[1, 1.5]}>
         <ambientLight intensity={0.5} />
         <GradientMesh />

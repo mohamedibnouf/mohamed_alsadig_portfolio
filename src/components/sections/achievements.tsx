@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
+import { PageContainer } from "@/components/ui/page-container";
 import { achievements } from "@/data/site";
 import { useLocale } from "@/providers/locale-provider";
 import { getTranslations } from "@/data/translations";
@@ -44,7 +45,7 @@ export function AchievementsSection() {
 
   return (
     <section className="section-padding relative bg-bg-secondary/30">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <PageContainer>
         <SectionHeader
           label="05"
           title={t.achievements.title}
@@ -52,7 +53,7 @@ export function AchievementsSection() {
           align="center"
         />
 
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-4">
           {achievements.map((item, i) => (
             <motion.div
               key={item.label}
@@ -60,18 +61,18 @@ export function AchievementsSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="glass-card p-8 text-center"
+              className="glass-card p-4 text-center sm:p-8"
             >
-              <p className="font-display text-4xl font-bold text-gradient-accent md:text-5xl">
+              <p className="font-display text-2xl font-bold text-gradient-accent sm:text-4xl md:text-5xl">
                 <Counter value={item.value} suffix={item.suffix} />
               </p>
-              <p className="mt-3 text-sm text-text-muted">
+              <p className="mt-2 text-xs text-text-muted sm:mt-3 sm:text-sm">
                 {locale === "ar" ? item.labelAr : item.label}
               </p>
             </motion.div>
           ))}
         </div>
-      </div>
+      </PageContainer>
     </section>
   );
 }

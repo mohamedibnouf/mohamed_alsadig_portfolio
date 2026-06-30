@@ -13,14 +13,14 @@ export function Footer() {
 
   return (
     <footer className="relative border-t border-white/5 bg-bg-secondary/50">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div className="page-container py-10 sm:py-12 lg:py-16">
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-secondary text-sm font-bold text-white">
               MA
             </div>
             <div>
-              <p className="font-display font-semibold text-white">
+              <p className="font-display text-sm font-semibold text-white sm:text-base">
                 Mohamed Al-Sadig Ibnouf
               </p>
               <p className="text-sm text-text-muted">{t.footer.built}</p>

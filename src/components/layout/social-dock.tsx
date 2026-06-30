@@ -19,7 +19,7 @@ export function SocialDock() {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 4, duration: 0.8 }}
-      className="fixed right-6 bottom-8 z-40 hidden flex-col gap-3 md:flex"
+      className="fixed end-4 bottom-6 z-40 hidden flex-col gap-3 pb-[env(safe-area-inset-bottom)] md:end-6 md:flex"
     >
       {links.map((link, i) => (
         <motion.div

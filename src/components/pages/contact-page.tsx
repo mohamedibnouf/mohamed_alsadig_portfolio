@@ -9,6 +9,7 @@ import {
   Send,
 } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/social-icons";
+import { PageContainer } from "@/components/ui/page-container";
 import { Button } from "@/components/ui/button";
 import { socialLinks } from "@/data/site";
 import { useLocale } from "@/providers/locale-provider";
@@ -58,43 +59,43 @@ export function ContactPage() {
   };
 
   return (
-    <section className="section-padding relative min-h-screen pt-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="section-padding relative min-h-[100dvh] pt-24 sm:pt-28 md:pt-32">
+      <PageContainer>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-16 max-w-2xl"
+          className="mb-10 max-w-2xl sm:mb-12 lg:mb-16"
         >
-          <span className="mb-4 inline-block text-sm font-medium uppercase tracking-widest text-accent">
+          <span className="mb-3 inline-block text-xs font-medium uppercase tracking-widest text-accent sm:mb-4 sm:text-sm">
             Contact
           </span>
-          <h1 className="font-display text-5xl font-bold tracking-tight text-white md:text-6xl">
+          <h1 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
             {t.contact.title}
           </h1>
-          <p className="mt-4 text-lg text-text-muted">{t.contact.subtitle}</p>
+          <p className="mt-3 text-base text-text-muted sm:mt-4 sm:text-lg">{t.contact.subtitle}</p>
         </motion.div>
 
-        <div className="grid gap-12 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="space-y-4"
+            className="space-y-3 sm:space-y-4"
           >
             {contactMethods.map((method) => (
-              <div key={method.label} className="glass-card flex items-center gap-4 p-5">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                  <method.icon className="h-5 w-5" />
+              <div key={method.label} className="glass-card flex items-center gap-3 p-4 sm:gap-4 sm:p-5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent sm:h-12 sm:w-12">
+                  <method.icon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
-                <div>
-                  <p className="text-sm text-text-muted">{method.label}</p>
+                <div className="min-w-0">
+                  <p className="text-xs text-text-muted sm:text-sm">{method.label}</p>
                   {method.href ? (
                     <a
                       href={method.href}
                       target={method.href.startsWith("http") ? "_blank" : undefined}
                       rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="font-medium text-white transition-colors hover:text-accent"
+                      className="break-all text-sm font-medium text-white transition-colors hover:text-accent sm:break-normal sm:text-base"
                     >
                       {method.value}
                     </a>
@@ -112,7 +113,7 @@ export function ContactPage() {
             transition={{ delay: 0.3, duration: 0.8 }}
           >
             {submitted ? (
-              <div className="glass-card flex h-full items-center justify-center p-12 text-center">
+              <div className="glass-card flex h-full items-center justify-center p-8 text-center sm:p-12">
                 <div>
                   <p className="text-4xl">✓</p>
                   <h3 className="mt-4 font-display text-2xl font-bold text-white">
@@ -124,7 +125,7 @@ export function ContactPage() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="glass-card space-y-6 p-8">
+              <form onSubmit={handleSubmit} className="glass-card space-y-4 p-5 sm:space-y-6 sm:p-8">
                 <div>
                   <label htmlFor="name" className="mb-2 block text-sm text-text-muted">
                     {t.contact.name}
@@ -169,7 +170,7 @@ export function ContactPage() {
             )}
           </motion.div>
         </div>
-      </div>
+      </PageContainer>
     </section>
   );
 }

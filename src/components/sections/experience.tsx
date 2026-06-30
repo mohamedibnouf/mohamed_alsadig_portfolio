@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
+import { PageContainer } from "@/components/ui/page-container";
 import { experience } from "@/data/site";
 import { useLocale } from "@/providers/locale-provider";
 import { getTranslations } from "@/data/translations";
@@ -15,7 +16,7 @@ export function ExperienceSection() {
 
   return (
     <section id="experience" className="section-padding relative bg-bg-secondary/30">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <PageContainer>
         <SectionHeader
           label="03"
           title={t.experience.title}
@@ -35,23 +36,23 @@ export function ExperienceSection() {
                   {company.company.charAt(0)}
                 </div>
                 <div>
-                  <h3 className="font-display text-2xl font-bold text-white">
+                  <h3 className="font-display text-xl font-bold text-white sm:text-2xl">
                     {locale === "ar" ? company.companyAr : company.company}
                   </h3>
                 </div>
               </div>
 
-              <div className="ml-7 space-y-6 border-l border-white/10 pl-8">
+              <div className="ms-4 space-y-4 border-s border-white/10 ps-4 sm:ms-7 sm:space-y-6 sm:ps-8">
                 {company.roles.map((role, ri) => (
                   <motion.div
                     key={role.title}
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ delay: ci * 0.2 + ri * 0.15, duration: 0.6 }}
-                    className="glass-card p-6"
+                    className="glass-card p-4 sm:p-6"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <h4 className="text-lg font-semibold text-white">
+                      <h4 className="text-base font-semibold text-white sm:text-lg">
                         {locale === "ar" ? role.titleAr : role.title}
                       </h4>
                       <span className="text-sm text-accent">
@@ -67,7 +68,7 @@ export function ExperienceSection() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </PageContainer>
     </section>
   );
 }

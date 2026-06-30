@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-screen items-center justify-center pt-24">
+    <section className="flex min-h-[80dvh] items-center justify-center px-4 pt-24">
       <div className="text-center">
-        <p className="font-display text-8xl font-bold text-gradient-accent">404</p>
-        <h1 className="mt-4 font-display text-2xl font-bold text-white">
+        <p className="font-display text-6xl font-bold text-gradient-accent sm:text-8xl">404</p>
+        <h1 className="mt-4 font-display text-xl font-bold text-white sm:text-2xl">
           Page not found
         </h1>
         <p className="mt-2 text-text-muted">

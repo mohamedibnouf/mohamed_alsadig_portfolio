@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { testimonials } from "@/data/site";
+import { PageContainer } from "@/components/ui/page-container";
 import { useLocale } from "@/providers/locale-provider";
 
 export function TestimonialsSection() {
@@ -17,7 +18,7 @@ export function TestimonialsSection() {
 
   return (
     <section className="section-padding relative">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <PageContainer className="max-w-4xl">
         <div className="relative">
           <Quote className="absolute -top-4 -left-2 h-12 w-12 text-accent/20" />
 
@@ -28,9 +29,9 @@ export function TestimonialsSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="glass-card p-10 text-center md:p-14"
+              className="glass-card p-6 text-center sm:p-10 md:p-14"
             >
-              <p className="text-lg leading-relaxed text-white md:text-xl">
+              <p className="text-base leading-relaxed text-white sm:text-lg md:text-xl">
                 &ldquo;{locale === "ar" ? testimonial.quoteAr : testimonial.quote}&rdquo;
               </p>
               <div className="mt-8">
@@ -73,7 +74,7 @@ export function TestimonialsSection() {
             </button>
           </div>
         </div>
-      </div>
+      </PageContainer>
     </section>
   );
 }

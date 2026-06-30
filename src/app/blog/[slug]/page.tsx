@@ -38,8 +38,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (!post) notFound();
 
   return (
-    <article className="section-padding relative min-h-screen pt-32">
-      <div className="mx-auto max-w-3xl px-6 lg:px-8">
+    <article className="section-padding relative min-h-screen pt-24 sm:pt-28 md:pt-32">
+      <div className="page-container max-w-3xl">
         <Link
           href="/blog"
           className="mb-8 inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-white"
@@ -52,11 +52,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {post.category}
         </Badge>
 
-        <h1 className="font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
+        <h1 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
           {post.title}
         </h1>
 
-        <div className="mt-6 flex items-center gap-4 text-sm text-text-muted">
+        <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-text-muted sm:mt-6 sm:gap-4">
           <span>{post.date}</span>
           <span className="flex items-center gap-1">
             <Clock className="h-4 w-4" />
@@ -64,8 +64,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </span>
         </div>
 
-        <div className="prose prose-invert mt-12 max-w-none">
-          <p className="text-lg leading-relaxed text-text-muted">{post.excerpt}</p>
+        <div className="prose prose-invert mt-8 max-w-none sm:mt-12">
+          <p className="text-base leading-relaxed text-text-muted sm:text-lg">{post.excerpt}</p>
 
           <div className="mt-8 space-y-6 text-text-muted">
             <p>

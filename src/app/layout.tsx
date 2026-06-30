@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Syne, Geist_Mono, Noto_Sans_Arabic } from "next/font/google";
 import { defaultMetadata, getPersonJsonLd, getWebsiteJsonLd } from "@/lib/seo";
 import { AppProviders } from "@/providers/app-providers";
@@ -29,6 +29,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = defaultMetadata;
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: "#050816",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,7 +62,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-bg-primary font-sans text-text-primary antialiased">
+      <body className="min-h-screen bg-bg-primary font-sans text-text-primary antialiased pb-[env(safe-area-inset-bottom)]">
         <AppProviders>{children}</AppProviders>
       </body>
     </html>
