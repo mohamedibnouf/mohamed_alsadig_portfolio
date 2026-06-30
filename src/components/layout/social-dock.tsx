@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Mail, MessageCircle } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/social-icons";
 import { socialLinks } from "@/data/site";
+import { useLiteMode } from "@/hooks/use-lite-mode";
 
 const links = [
   { href: socialLinks.github, icon: GitHubIcon, label: "GitHub" },
@@ -14,6 +15,9 @@ const links = [
 ];
 
 export function SocialDock() {
+  const lite = useLiteMode();
+  if (lite) return null;
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}

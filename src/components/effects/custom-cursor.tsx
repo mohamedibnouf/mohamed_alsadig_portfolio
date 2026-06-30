@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function CustomCursor() {
+  const [isTouch, setIsTouch] = useState(true);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   const trailX = useSpring(cursorX, { stiffness: 500, damping: 28 });
@@ -11,8 +12,12 @@ export function CustomCursor() {
   const isVisible = useRef(false);
 
   useEffect(() => {
-    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return;
+    const touch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    setIsTouch(touch);
+  }, []);
+
+  useEffect(() => {
+    if (isTouch) return;
 
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
@@ -38,11 +43,10 @@ export function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.body.style.cursor = "auto";
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, isTouch]);
 
   useEffect(() => {
-    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return;
+    if (isTouch) return;
 
     const magneticElements = document.querySelectorAll("[data-magnetic='true']");
 
@@ -71,12 +75,9 @@ export function CustomCursor() {
         el.removeEventListener("mouseleave", resetMagnetic);
       });
     };
-  }, []);
+  }, [isTouch]);
 
-  if (typeof window !== "undefined") {
-    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return null;
-  }
+  if (isTouch) return null;
 
   return (
     <>

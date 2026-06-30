@@ -2,11 +2,6 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-
-const Hero3DGradient = dynamic(
-  () => import("@/components/effects/hero-3d").then((m) => m.Hero3DGradient),
-  { ssr: false }
-);
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { PageContainer } from "@/components/ui/page-container";
@@ -14,34 +9,47 @@ import { Button } from "@/components/ui/button";
 import { stats } from "@/data/site";
 import { useLocale } from "@/providers/locale-provider";
 import { getTranslations } from "@/data/translations";
+import { useLiteMode } from "@/hooks/use-lite-mode";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 3.8 },
-  },
-};
+const Hero3DGradient = dynamic(
+  () => import("@/components/effects/hero-3d").then((m) => m.Hero3DGradient),
+  { ssr: false }
+);
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] as const },
-  },
-};
+function Hero3D() {
+  const lite = useLiteMode();
+  if (lite) return null;
+  return <Hero3DGradient />;
+}
 
 export function HeroSection() {
   const { locale } = useLocale();
   const t = getTranslations(locale);
+  const lite = useLiteMode();
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: lite ? 0.2 : 3.8 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: lite ? 0.5 : 0.8, ease: [0.23, 1, 0.32, 1] as const },
+    },
+  };
 
   return (
     <section
       id="home"
       className="relative flex min-h-[100dvh] items-center pt-20 pb-12 sm:pt-24 sm:pb-16"
     >
-      <Hero3DGradient />
+      <Hero3D />
       <PageContainer className="relative z-10">
         <motion.div
           variants={containerVariants}
@@ -106,7 +114,7 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 4.5, duration: 0.8 }}
+          transition={{ delay: lite ? 0.5 : 4.5, duration: lite ? 0.5 : 0.8 }}
           className="mt-12 grid grid-cols-2 gap-3 sm:mt-16 sm:gap-4 md:mt-24 md:grid-cols-4 md:gap-6"
         >
           {stats.map((stat, i) => (
@@ -118,7 +126,7 @@ export function HeroSection() {
                 className="font-display text-2xl font-bold text-white sm:text-3xl md:text-4xl"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 4.8 + i * 0.1, duration: 0.5 }}
+                transition={{ delay: (lite ? 0.6 : 4.8) + i * 0.1, duration: 0.5 }}
               >
                 {stat.value}
               </motion.p>

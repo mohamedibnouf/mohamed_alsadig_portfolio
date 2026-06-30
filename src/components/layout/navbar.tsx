@@ -8,12 +8,14 @@ import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { navLinks } from "@/data/site";
 import { useLocale } from "@/providers/locale-provider";
+import { useLiteMode } from "@/hooks/use-lite-mode";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const { locale, toggleLocale } = useLocale();
+  const lite = useLiteMode();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -44,7 +46,7 @@ export function Navbar() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, delay: 3.5, ease: [0.23, 1, 0.32, 1] }}
+        transition={{ duration: 0.8, delay: lite ? 0 : 3.5, ease: [0.23, 1, 0.32, 1] }}
         className={cn(
           "fixed top-0 right-0 left-0 z-50 transition-all duration-500",
           isScrolled
