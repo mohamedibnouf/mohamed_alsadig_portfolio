@@ -301,8 +301,9 @@ export const navLinks = [
 ];
 
 export const socialLinks = {
-  email: "mailto:mohamed@example.com",
-  linkedin: "https://linkedin.com/in/mohamed-alsadig",
-  github: "https://github.com/mohamed-alsadig",
-  whatsapp: "https://wa.me/966500000000",
+  email: "mailto:mohamedibnouf.en@gmail.com",
+  linkedin: "https://www.linkedin.com/in/mohamed-al-sadig-6b250a214",
+  github: "https://github.com/Commergio",
+  whatsapp: "https://wa.me/966567395986",
+  phone: "+966 567395986",
 };

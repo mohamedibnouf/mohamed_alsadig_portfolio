@@ -25,7 +25,7 @@ export const siteConfig = {
   author: {
     name: "Mohamed Al-Sadig Ibnouf",
     url: siteUrl,
-    email: "mohamed@example.com",
+    email: "mohamedibnouf.en@gmail.com",
     jobTitle: "Software Engineer",
     location: "Riyadh, Saudi Arabia",
   },
@@ -100,8 +100,8 @@ export function getPersonJsonLd() {
     },
     knowsLanguage: ["Arabic", "English"],
     sameAs: [
-      "https://linkedin.com/in/mohamed-alsadig",
-      "https://github.com/mohamed-alsadig",
+      "https://www.linkedin.com/in/mohamed-al-sadig-6b250a214",
+      "https://github.com/Commergio",
     ],
   };
 }

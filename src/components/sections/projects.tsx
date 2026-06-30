@@ -11,7 +11,7 @@ import { useLocale } from "@/providers/locale-provider";
 import { getTranslations } from "@/data/translations";
 import { cn } from "@/lib/utils";
 
-const categories = ["All", "Enterprise SaaS", "Medical Marketplace", "Corporate Website", "Luxury Brand", "Luxury Coffee", "Internal Operations"];
+const categories = ["All", "Enterprise SaaS", "Medical Marketplace", "Corporate Website", "Food Delivery", "Luxury Brand", "Luxury Coffee"];
 
 export function ProjectsSection() {
   const [filter, setFilter] = useState("All");

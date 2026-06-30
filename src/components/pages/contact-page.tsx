@@ -18,7 +18,7 @@ const contactMethods = [
   {
     icon: Mail,
     label: "Email",
-    value: "mohamed@example.com",
+    value: "mohamedibnouf.en@gmail.com",
     href: socialLinks.email,
   },
   {
@@ -30,19 +30,19 @@ const contactMethods = [
   {
     icon: LinkedInIcon,
     label: "LinkedIn",
-    value: "mohamed-alsadig",
+    value: "mohamed-al-sadig",
     href: socialLinks.linkedin,
   },
   {
     icon: GitHubIcon,
     label: "GitHub",
-    value: "mohamed-alsadig",
+    value: "Commergio",
     href: socialLinks.github,
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    value: "+966 50 000 0000",
+    value: socialLinks.phone,
     href: socialLinks.whatsapp,
   },
 ];
