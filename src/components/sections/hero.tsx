@@ -10,6 +10,7 @@ import { stats } from "@/data/site";
 import { useLocale } from "@/providers/locale-provider";
 import { getTranslations } from "@/data/translations";
 import { useLiteMode } from "@/hooks/use-lite-mode";
+import { HeroPortrait } from "@/components/sections/hero-portrait";
 
 const Hero3DGradient = dynamic(
   () => import("@/components/effects/hero-3d").then((m) => m.Hero3DGradient),
@@ -51,65 +52,73 @@ export function HeroSection() {
     >
       <Hero3D />
       <PageContainer className="relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-4xl"
-        >
-          <motion.div variants={itemVariants} className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-4 py-1.5 text-sm text-accent">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
-              Available for opportunities
-            </span>
-          </motion.div>
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-12 xl:gap-16">
+          {/* Portrait — top on mobile, right on desktop */}
+          <div className="order-1 lg:order-2 lg:justify-self-end">
+            <HeroPortrait />
+          </div>
 
-          <motion.h1
-            variants={itemVariants}
-            className="font-display text-[1.75rem] leading-[1.15] font-bold tracking-tight text-white min-[400px]:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
-          >
-            {t.hero.headline.split("\n").map((line, i) => (
-              <span key={i} className="block">
-                {i === 0 ? (
-                  <span className="text-gradient">{line}</span>
-                ) : (
-                  <span className="text-gradient-accent">{line}</span>
-                )}
-              </span>
-            ))}
-          </motion.h1>
-
-          <motion.p
-            variants={itemVariants}
-            className="mt-5 max-w-2xl text-base leading-relaxed text-text-muted sm:mt-8 sm:text-lg md:text-xl"
-          >
-            {t.hero.subheadline}
-          </motion.p>
-
+          {/* Content */}
           <motion.div
-            variants={itemVariants}
-            className="mt-8 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="order-2 max-w-4xl lg:order-1"
           >
-            <Link href="#projects" className="w-full sm:w-auto">
-              <Button magnetic className="w-full sm:w-auto">
-                {t.hero.ctaProjects}
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <a href="/cv.pdf" download className="w-full sm:w-auto">
-              <Button variant="secondary" magnetic className="w-full sm:w-auto">
-                <Download className="h-4 w-4" />
-                {t.hero.ctaCV}
-              </Button>
-            </a>
-            <Link href="/contact" className="w-full sm:w-auto">
-              <Button variant="ghost" magnetic className="w-full sm:w-auto">
-                <Mail className="h-4 w-4" />
-                {t.hero.ctaContact}
-              </Button>
-            </Link>
+            <motion.div variants={itemVariants} className="mb-6">
+              <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-4 py-1.5 text-sm text-accent">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+                Available for opportunities
+              </span>
+            </motion.div>
+
+            <motion.h1
+              variants={itemVariants}
+              className="font-display text-[1.75rem] leading-[1.15] font-bold tracking-tight text-white min-[400px]:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
+            >
+              {t.hero.headline.split("\n").map((line, i) => (
+                <span key={i} className="block">
+                  {i === 0 ? (
+                    <span className="text-gradient">{line}</span>
+                  ) : (
+                    <span className="text-gradient-accent">{line}</span>
+                  )}
+                </span>
+              ))}
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className="mt-5 max-w-2xl text-base leading-relaxed text-text-muted sm:mt-8 sm:text-lg md:text-xl"
+            >
+              {t.hero.subheadline}
+            </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className="mt-8 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
+            >
+              <Link href="#projects" className="w-full sm:w-auto">
+                <Button magnetic className="w-full sm:w-auto">
+                  {t.hero.ctaProjects}
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <a href="/cv.pdf" download className="w-full sm:w-auto">
+                <Button variant="secondary" magnetic className="w-full sm:w-auto">
+                  <Download className="h-4 w-4" />
+                  {t.hero.ctaCV}
+                </Button>
+              </a>
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button variant="ghost" magnetic className="w-full sm:w-auto">
+                  <Mail className="h-4 w-4" />
+                  {t.hero.ctaContact}
+                </Button>
+              </Link>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
